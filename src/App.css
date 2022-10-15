@@ -8,6 +8,13 @@ body {
   font-family: "Roboto Slab", serif;
 }
 
+.appBox {
+  background-color: rgb(255, 224, 167);
+  margin:25px;
+  padding: 25px;
+}
+
+
 .listSection {
   display: inline-block;
   text-align: left;
