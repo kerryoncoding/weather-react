@@ -1,58 +1,49 @@
-import React from "react";
-import "./App.css";
+import React, { useState } from "react";
+import axios from "axios";
 
-export default function CurrentWeather() {
+export default function SubmitForm() {
+  let [city, setCity] = useState("");
+  let [list, setList] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    let apiKey = "ca47e9200d90350ad07692b8ce034ca3";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(url).then(showWeatherData);
+  }
+
+  function showWeatherData(weather) {
+    setList(
+      <ul className="weatherList">
+        <li>Temperature: {Math.round(weather.data.main.temp)}°C</li>
+        <li>Description: {weather.data.weather[0].main}</li>
+        <li>Humidity: {weather.data.main.humidity}%</li>
+        <li>Wind: {weather.data.wind.speed} km/h</li>
+        <li>
+          <img
+            src={`http://openweathermap.org/img/wn/${weather.data.weather[0].icon}@2x.png`}
+          />
+        </li>
+      </ul>
+    );
+  }
+
+  function cityInput(event) {
+    setCity(event.target.value);
+  }
+
   return (
-    <div className="CurrentWeather">
-      <form class="current-weather-section">
-        <div className="row">
-          <div className="col-1"></div>
-          <div className="col-4">
-            <div className="current-city-weather">
-              <strong className="current-city-name">New York</strong>
-              <div className="current-day-time">Tuesday, 10:05 AM</div>
-            </div>
-          </div>
-          <div className="col-7"></div>
-        </div>
-        <div className="row">
-          <div className="col-1"></div>
-          <div className="col-4">
-            <img
-              src={require(`./images/02d.png`)}
-              alt="mostly sunny"
-              className="current-weather-image"
-            />
-          </div>
-          <div className="col-3">
-            <div className="current-temperature">
-              <span className="current-temperature-value">25</span>
-              <span className="current-units">
-                <a href="/" id="celsious" class="active">
-                  °C
-                </a>
-                |
-                <a href="/" id="fahrenheit">
-                  °F
-                </a>
-              </span>
-            </div>
-          </div>
-          <div className="col-3">
-            <div className="current-weather-description">
-              <div id="current-description">
-                <strong>Cloudy</strong>
-              </div>
-              <div>
-                Humidity: <span id="current-humidity">71</span>%
-              </div>
-              <div>
-                Wind: <span id="current-wind">8</span> km/h
-              </div>
-            </div>
-          </div>
-        </div>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="search"
+          placeholder="Enter a city..."
+          onChange={cityInput}
+        />{" "}
+        <input type="submit" value="Search" />
       </form>
+      <div className="listSection">{list}</div>
     </div>
   );
 }
+
