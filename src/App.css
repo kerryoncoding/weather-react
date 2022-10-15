@@ -10,6 +10,7 @@ body {
 
 .appBox {
   background-color: rgb(255, 224, 167);
+  border-radius: 25px;
   margin:25px;
   padding: 25px;
 }
