@@ -1,18 +1,28 @@
 
 import './App.css';
-import Weather from "./Weather";
+import CitySearch from "./CitySearch";
+import CurrentWeather from "./CurrentWeather";
+import FutureDays from "./FutureDays";
 import Footer from "./Footer";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello World of React!</h1>
-        <Weather />
-
-        <Footer />
-
-      </header>
+   <div className="App">
+      <div className="container">
+        <div className="card maincard">
+          <div className="card-body">
+            <CitySearch />
+            <CurrentWeather />
+            <FutureDays />
+          </div>
+        </div>
+        <div>
+          <Footer />
+        </div>
+        <div>
+          <script src="src/index.js"></script>
+        </div>
+      </div>
     </div>
   );
 }
