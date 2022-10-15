@@ -28,11 +28,11 @@ export default function CurrentWeather() {
             <div className="current-temperature">
               <span className="current-temperature-value">25</span>
               <span className="current-units">
-                <a href="#" id="celsious" class="active">
+                <a href="/" id="celsious" class="active">
                   °C
                 </a>
                 |
-                <a href="#" id="fahrenheit">
+                <a href="/" id="fahrenheit">
                   °F
                 </a>
               </span>
